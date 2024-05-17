@@ -94,7 +94,7 @@ const App = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
+      <ScrollView className="flex-1 relative">
         <View className="px-4">
           <Text>{selectedVegetable.label}</Text>
           {/* heading text  */}
@@ -126,7 +126,7 @@ const App = () => {
                 Select Quantity of Vegetable:
               </Text>
               <CustomDropdown
-                items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => {
+                items={[1, 2, 3, 4, 5].map((item) => {
                   return {
                     label: `${item}`,
                     value: item,
@@ -151,10 +151,10 @@ const App = () => {
             </View>
             <View className="mt-5">
               <Text className="text-center text-lg font-bold">
-                Select Quantity of Fruits:
+                Select Quantity of Fruit:
               </Text>
               <CustomDropdown
-                items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => {
+                items={[1, 2, 3, 4, 5].map((item) => {
                   return {
                     label: `${item}`,
                     value: item,
@@ -165,7 +165,6 @@ const App = () => {
               />
             </View>
           </View>
-
           <Pressable
             className="bg-blue-500 w-28 rounded py-1 mx-auto my-5"
             onPress={handleCalculate}
@@ -174,6 +173,13 @@ const App = () => {
           </Pressable>
           <Text className="text-lg font-bold">
             Total Cost of Order: ${totalPrice}
+          </Text>
+        </View>
+        <View className="px-4 mt-auto absolute -bottom-40 w-full left-0">
+          <Text className="text-center">App Developed by:</Text>
+          <Text className="text-center">
+            Susan Ghimire(48091944), Hayden Bonitz(47215569), Baxter
+            Kemp(47734175) and Ayush Sharma(47763574)
           </Text>
         </View>
       </ScrollView>
