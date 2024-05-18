@@ -45,8 +45,6 @@ const App = () => {
     setTotalPrice(totalPrice);
   };
 
-  console.log(selectedFruit);
-
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
