@@ -9,8 +9,6 @@ import {
   StatusBar,
   SafeAreaView,
 } from "react-native";
-import { Picker } from "@react-native-picker/picker";
-import RNPickerSelect from "react-native-picker-select";
 import CustomDropdown from "./components/CustomDropdown";
 
 const vegetables = [
@@ -27,49 +25,6 @@ const fruits = [
   { label: "Apple-$11", value: 11 },
   { label: "Banana-$10", value: 10 },
   { label: "Grapes-$13", value: 13 },
-];
-
-const quantities = [
-  {
-    label: "1",
-    value: 1,
-  },
-  {
-    label: "2",
-    value: 2,
-  },
-  {
-    label: "3",
-    value: 3,
-  },
-  {
-    label: "4",
-    value: 4,
-  },
-  {
-    label: "5",
-    value: 5,
-  },
-  {
-    label: "6",
-    value: 6,
-  },
-  {
-    label: "7",
-    value: 7,
-  },
-  {
-    label: "8",
-    value: 8,
-  },
-  {
-    label: "9",
-    value: 9,
-  },
-  {
-    label: "10",
-    value: 10,
-  },
 ];
 
 const App = () => {
@@ -94,37 +49,40 @@ const App = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView className="flex-1 relative">
-        <View className="px-4">
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.screenPadding}>
           <Text>{selectedVegetable.label}</Text>
           {/* heading text  */}
           <View>
-            <Text className="text-xl font-semibold">
-              Welcome to POGS Online Shopping!
-            </Text>
+            <Text style={styles.header}>Welcome to POGS Online Shopping!</Text>
             <Image
               source={{
                 uri: "https://images.unsplash.com/photo-1610348725531-843dff563e2c?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
               }}
-              className="w-full h-32 object-cover"
+              // className="h-32"
+              style={styles.image}
             />
           </View>
           {/* vegetables  */}
-          <View className="mt-10">
+          <View
+            style={{
+              marginTop: 40,
+            }}
+          >
             <View className="">
-              <Text className="text-center text-lg font-bold">
-                Select Vegetable:
-              </Text>
+              <Text style={styles.label}>Select Vegetable:</Text>
               <CustomDropdown
                 items={vegetables}
                 setSelectedItem={setSelectedVegetable}
                 placeholder="Select Vegetable..."
               />
             </View>
-            <View className="mt-5">
-              <Text className="text-center text-lg font-bold">
-                Select Quantity of Vegetable:
-              </Text>
+            <View
+              style={{
+                marginTop: 20,
+              }}
+            >
+              <Text style={styles.label}>Select Quantity of Vegetable:</Text>
               <CustomDropdown
                 items={[1, 2, 3, 4, 5].map((item) => {
                   return {
@@ -138,21 +96,25 @@ const App = () => {
             </View>
           </View>
           {/* Fruits  */}
-          <View className="mt-5">
+          <View
+            style={{
+              marginTop: 20,
+            }}
+          >
             <View>
-              <Text className="text-center text-lg font-bold">
-                Select Fruit:
-              </Text>
+              <Text style={styles.label}>Select Fruit:</Text>
               <CustomDropdown
                 items={fruits}
                 setSelectedItem={setSelectedFruit}
                 placeholder="Select Fruits..."
               />
             </View>
-            <View className="mt-5">
-              <Text className="text-center text-lg font-bold">
-                Select Quantity of Fruit:
-              </Text>
+            <View
+              style={{
+                marginTop: 20,
+              }}
+            >
+              <Text style={styles.label}>Select Quantity of Fruit:</Text>
               <CustomDropdown
                 items={[1, 2, 3, 4, 5].map((item) => {
                   return {
@@ -165,19 +127,16 @@ const App = () => {
               />
             </View>
           </View>
-          <Pressable
-            className="bg-blue-500 w-28 rounded py-1 mx-auto my-5"
-            onPress={handleCalculate}
-          >
-            <Text className="text-white text-center text-lg">Calculate</Text>
+          <Pressable style={styles.button} onPress={handleCalculate}>
+            <Text style={styles.buttonText}>Calculate</Text>
           </Pressable>
-          <Text className="text-lg font-bold">
+          <Text style={styles.orderCost}>
             Total Cost of Order: ${totalPrice}
           </Text>
         </View>
-        <View className="px-4 mt-auto absolute -bottom-40 w-full left-0">
-          <Text className="text-center">App Developed by:</Text>
-          <Text className="text-center">
+        <View style={{ ...styles.screenPadding, ...styles.members }}>
+          <Text style={styles.textCenter}>App Developed by:</Text>
+          <Text style={styles.textCenter}>
             Susan Ghimire(48091944), Hayden Bonitz(47215569), Baxter
             Kemp(47734175) and Ayush Sharma(47763574)
           </Text>
@@ -194,9 +153,63 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: StatusBar.currentHeight,
   },
+  members: {
+    position: "absolute",
+    bottom: -150,
+    width: "100%",
+    left: 0,
+    textAlign: "center",
+  },
+  textCenter: {
+    textAlign: "center",
+  },
+  orderCost: {
+    fontSize: 18,
+    lineHeight: 28,
+    fontWeight: "700",
+  },
+  button: {
+    backgroundColor: "#3b83f6",
+    width: 112,
+    borderRadius: 4,
+    paddingTop: 4,
+    paddingBottom: 4,
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  buttonText: {
+    fontSize: 18,
+    lineHeight: 28,
+    textAlign: "center",
+    color: "white",
+  },
+  label: {
+    textAlign: "center",
+    fontSize: 18,
+    lineHeight: 28,
+    fontWeight: "700",
+  },
+  screenPadding: {
+    paddingLeft: 16,
+    paddingRight: 16,
+  },
+  scrollView: {
+    flex: `1 1 0%`,
+    position: `relative`,
+  },
   select: {
-    backgroundColor: "red,",
+    backgroundColor: "red",
     borderColor: "black",
     border: "1px solid black",
+  },
+  header: {
+    fontSize: 20,
+    lineHeight: 28,
+    fontWeight: "600",
+  },
+  image: {
+    height: 128,
   },
 });
