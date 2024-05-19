@@ -49,7 +49,6 @@ const App = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <View style={styles.screenPadding}>
-          <Text>{selectedVegetable.label}</Text>
           {/* heading text  */}
           <View>
             <Text style={styles.header}>Welcome to POGS Online Shopping!</Text>
